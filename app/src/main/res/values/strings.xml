@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Work Tracker</string>
+    <string name="not_working">You are currently not working.</string>
+    <string name="working">You are currently working.</string>
+</resources>
