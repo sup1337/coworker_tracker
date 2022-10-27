@@ -1,6 +1,6 @@
 package com.example.worktracker.network
 
 data class Database(
-    val host: String = "http://10.0.98.157/",
+    val host: String = "http://192.168.43.108//",
     val databaseName: String = "loginregister/"
 )
