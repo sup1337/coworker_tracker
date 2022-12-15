@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.worktracker"
-        minSdk 21
+        minSdkVersion 28
         targetSdk 32
         versionCode 1
         versionName "1.0"

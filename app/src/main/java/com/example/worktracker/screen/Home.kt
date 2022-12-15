@@ -34,6 +34,8 @@ fun HomePage(navController: NavHostController, sharedPreferences: SharedPreferen
 
     var isWorking by remember { mutableStateOf(false)}
 
+    var ssid by remember { mutableStateOf("") }
+
     checkWorking(userId, localContext, object: CallbackListener<Boolean> {
         override fun onSuccess(response: Boolean) {
             isWorking = response
@@ -79,6 +81,15 @@ fun HomePage(navController: NavHostController, sharedPreferences: SharedPreferen
                 }
             )
         )
+        Spacer(modifier = Modifier.size(20.dp))
+        Text(text = ssid)
+        Button(
+            onClick = {
+                ssid = checkSSID(localContext)
+            }
+        ) {
+            Text(text = "Check SSID", color = MaterialTheme.colors.background)
+        }
     }
     Column(
         verticalArrangement = Arrangement.Top,
