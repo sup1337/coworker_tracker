@@ -4,6 +4,8 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
+import com.example.worktracker.system.cancelPeriodicWork
+import com.example.worktracker.system.schedulePeriodicWork
 import com.vishnusivadas.advanced_httpurlconnection.PutData
 import java.text.SimpleDateFormat
 import java.util.*
@@ -35,6 +37,8 @@ fun startWork(
             if (putData.startPut()) {
                 if (putData.onComplete()) {
                     val result = putData.result
+                    val sharedPreferences = localContext.getSharedPreferences("prefs", Context.MODE_PRIVATE)
+                    schedulePeriodicWork(localContext, sharedPreferences)
                     Toast.makeText(localContext, result, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -74,6 +78,7 @@ fun stopWork(
             if (putData.startPut()) {
                 if (putData.onComplete()) {
                     val result = putData.result
+                    cancelPeriodicWork(localContext)
                     Toast.makeText(localContext, result, Toast.LENGTH_SHORT).show()
                 }
             }

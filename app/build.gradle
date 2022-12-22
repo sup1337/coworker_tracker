@@ -69,4 +69,7 @@ dependencies {
 
     //Material Theme
     implementation 'androidx.compose.material3:material3:1.0.0-alpha01'
+
+    //Check Working Periodically
+    implementation "androidx.work:work-runtime-ktx:2.5.0"
 }

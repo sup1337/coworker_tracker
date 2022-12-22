@@ -1,6 +1,7 @@
 package com.example.worktracker.screen
 
 import android.content.SharedPreferences
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -34,8 +35,6 @@ fun HomePage(navController: NavHostController, sharedPreferences: SharedPreferen
 
     var isWorking by remember { mutableStateOf(false)}
 
-    var ssid by remember { mutableStateOf("") }
-
     checkWorking(userId, localContext, object: CallbackListener<Boolean> {
         override fun onSuccess(response: Boolean) {
             isWorking = response
@@ -58,12 +57,16 @@ fun HomePage(navController: NavHostController, sharedPreferences: SharedPreferen
             painter = image,
             contentDescription = "in work",
             Modifier.clickable {
-                isWorking = if(isWorking) {
-                    stopWork(userId, localContext)
-                    !isWorking
+                if (WifiSSIDList.contains(checkSSID(localContext))) {
+                    isWorking = if (isWorking) {
+                        stopWork(userId, localContext)
+                        !isWorking
+                    } else {
+                        startWork(userId, localContext)
+                        !isWorking
+                    }
                 } else {
-                    startWork(userId, localContext)
-                    !isWorking
+                    Toast.makeText(localContext, "You are not on the correct WIFI", Toast.LENGTH_SHORT).show()
                 }
             }
         )
@@ -81,15 +84,6 @@ fun HomePage(navController: NavHostController, sharedPreferences: SharedPreferen
                 }
             )
         )
-        Spacer(modifier = Modifier.size(20.dp))
-        Text(text = ssid)
-        Button(
-            onClick = {
-                ssid = checkSSID(localContext)
-            }
-        ) {
-            Text(text = "Check SSID", color = MaterialTheme.colors.background)
-        }
     }
     Column(
         verticalArrangement = Arrangement.Top,

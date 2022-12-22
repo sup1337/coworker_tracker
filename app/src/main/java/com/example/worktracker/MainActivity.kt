@@ -15,9 +15,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
@@ -56,6 +54,8 @@ class MainActivity : ComponentActivity() {
             }
 
             userId.value = sharedPreferences.getString(USER_KEY, "").toString()
+
+
         }
     }
 
@@ -69,9 +69,10 @@ class MainActivity : ComponentActivity() {
             loggedIn = true
         }
 
+
         //Check if location is enabled. Required for SSID requesting.
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        if (!locationManager.isLocationEnabled()) {
+        if (!locationManager.isLocationEnabled) {
             // Location is not enabled
             val alertDialog: AlertDialog? = this.let {
                 val builder = AlertDialog.Builder(it)
@@ -92,6 +93,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
