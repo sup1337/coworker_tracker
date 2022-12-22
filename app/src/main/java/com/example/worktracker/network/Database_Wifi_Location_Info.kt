@@ -8,7 +8,7 @@ data class Database(
     val databaseName: String = "loginregister/"
 )
 
-val WifiSSIDList = listOf<String>(
+val WifiSSIDList = listOf(
     "AndroidWifi",
     "Bendzsike-Network"
 )
