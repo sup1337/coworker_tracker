@@ -66,7 +66,7 @@ fun HomePage(navController: NavHostController, sharedPreferences: SharedPreferen
                         !isWorking
                     }
                 } else {
-                    Toast.makeText(localContext, "You are not on the correct WIFI", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(localContext, "You are not on the correct WIFI!", Toast.LENGTH_SHORT).show()
                 }
             }
         )
